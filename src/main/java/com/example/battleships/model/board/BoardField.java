@@ -1,8 +1,8 @@
-package com.example.battleships.model;
+package com.example.battleships.model.board;
 
 import lombok.Getter;
 
-public enum BoardFieldStatus {
+public enum BoardField {
 
   SHIP("0"),
   EMPTY("."),
@@ -13,7 +13,7 @@ public enum BoardFieldStatus {
   private String icon;
 
 
-  BoardFieldStatus(String icon) {
+  BoardField(String icon) {
     this.icon = icon;
   }
 

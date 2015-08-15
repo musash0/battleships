@@ -2,6 +2,8 @@ package com.example.battleships;
 
 import com.example.battleships.command.CommandExecutor;
 import com.example.battleships.command.Commands;
+import com.example.battleships.utils.ShipGenerator;
+import com.example.battleships.utils.gridAlocation.IShipGenerator;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,6 +16,8 @@ public class BattleshipGame {
     ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
 
     CommandExecutor executor = (CommandExecutor) applicationContext.getBean("commandExecutor");
+    IShipGenerator shipGenerator = (IShipGenerator) applicationContext.getBean(ShipGenerator.NAME);
+
 
     //Print available commands
     executor.execute(Commands.SHOOT.getCommand());

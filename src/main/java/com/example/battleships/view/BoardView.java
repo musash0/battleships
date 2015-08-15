@@ -1,20 +1,20 @@
 package com.example.battleships.view;
 
-import com.example.battleships.model.BoardFieldStatus;
-import com.example.battleships.model.BoardGameModel;
+import com.example.battleships.model.board.BoardField;
+import com.example.battleships.model.board.GridBoard;
 
 public class BoardView {
 
-  private BoardGameModel boardGameModel;
+  private GridBoard gridBoard;
 
-  public BoardView(BoardGameModel gameModel) {
-    this.boardGameModel = gameModel;
+  public BoardView(GridBoard gameModel) {
+    this.gridBoard = gameModel;
   }
 
   public void draw() {
-    BoardFieldStatus fields[][] = boardGameModel.getBoardGrid();
-    for (BoardFieldStatus[] row : fields) {
-      for (BoardFieldStatus cell : row) {
+    BoardField fields[][] = gridBoard.getGridBoard();
+    for (BoardField[] row : fields) {
+      for (BoardField cell : row) {
         System.out.println(cell.toString());
       }
     }
