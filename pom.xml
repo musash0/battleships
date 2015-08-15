@@ -123,7 +123,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>com.example.techhuddle.BattleshipGame</mainClass>
+                            <mainClass>com.example.battleships.BattleshipGame</mainClass>
                         </manifest>
                     </archive>
                     <finalName>battleships</finalName>

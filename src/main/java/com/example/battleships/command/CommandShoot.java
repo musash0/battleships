@@ -1,4 +1,4 @@
-package com.example.techhuddle.command;
+package com.example.battleships.command;
 
 public class CommandShoot extends AbstractCommand {
   @Override

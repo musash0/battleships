@@ -1,4 +1,4 @@
-package com.example.techhuddle;
+package com.example.battleships;
 
 public class NewPrintClass {
   public void print() {

@@ -1,6 +1,6 @@
-package com.example.techhuddle.utils;
+package com.example.battleships.utils;
 
-import com.example.techhuddle.NewPrintClass;
+import com.example.battleships.NewPrintClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

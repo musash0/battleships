@@ -1,4 +1,4 @@
-package com.example.techhuddle.command;
+package com.example.battleships.command;
 
 public interface ICommand {
 
