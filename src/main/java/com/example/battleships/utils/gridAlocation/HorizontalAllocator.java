@@ -1,6 +1,7 @@
 package com.example.battleships.utils.gridAlocation;
 
 import com.example.battleships.model.board.BoardField;
+import com.example.battleships.model.board.BoardFieldStatus;
 import com.example.battleships.model.board.GridBoard;
 
 public class HorizontalAllocator extends BaseGridAllocator {
@@ -12,7 +13,7 @@ public class HorizontalAllocator extends BaseGridAllocator {
     int stern = getStern(position);
     for (int newColumnPosition = position.getColumn(); newColumnPosition <= stern; newColumnPosition++) {
       Position newShipPosition = createNewColumnPosition(position, newColumnPosition);
-      gridBoard.addBoardField(newShipPosition, BoardField.SHIP);
+      gridBoard.addBoardField(newShipPosition, BoardField.create(BoardFieldStatus.SHIP));
     }
   }
 

@@ -1,23 +1,24 @@
 package com.example.battleships.model.board;
 
-import lombok.Getter;
+import lombok.AllArgsConstructor;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Data;
 
-public enum BoardField {
+@Data
+@RequiredArgsConstructor
+@AllArgsConstructor
+public class BoardField {
 
-  SHIP("0"),
-  HIT("X"),
-  MISSED("-");
+  @NonNull
+  private BoardFieldStatus value;
+  private boolean isHit;
 
-  @Getter
-  private String icon;
-
-
-  BoardField(String icon) {
-    this.icon = icon;
+  public static BoardField create(BoardFieldStatus value) {
+    return new BoardField(value);
   }
 
-  @Override
-  public String toString() {
-    return icon;
+  public static BoardField create(BoardFieldStatus value, boolean isHit) {
+    return new BoardField(value, isHit);
   }
 }

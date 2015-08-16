@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class CommandShoot extends AbstractCommand {
 
+  public static final String NAME = "commandShoot";
+
   @Autowired
   private GridBoard gridBoard;
 
@@ -17,19 +19,18 @@ public class CommandShoot extends AbstractCommand {
   public void execute(String commandString) {
     if (Commands.SHOOT.getCommand() != commandString) {
 
-      char row = commandString.charAt(0);
+      int row = commandString.toUpperCase().charAt(0) - 65;
       String column = null;
       if (commandString.length() == 3) {
         column = commandString.substring(1, 2);
-      } else if (commandString.length() == 3) {
+      } else if (commandString.length() == 2) {
         column = commandString.substring(1);
       }
-      int columnInt = Integer.valueOf(column);
+      int columnInt = Integer.valueOf(column) - 1;
 
       Position position = Position.createPosition(row, columnInt);
       gridBoard.tryShot(position);
     }
     boardView.draw();
-
   }
 }

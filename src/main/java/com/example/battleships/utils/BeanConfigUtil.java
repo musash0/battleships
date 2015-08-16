@@ -1,12 +1,11 @@
 package com.example.battleships.utils;
 
-import com.example.battleships.command.CommandExecutor;
-import com.example.battleships.command.ICommand;
+import com.example.battleships.command.*;
 import com.example.battleships.model.board.GridBoard;
-import com.example.battleships.utils.gridAlocation.VerticalAllocator;
+import com.example.battleships.utils.gridAlocation.HorizontalAllocator;
 import com.example.battleships.utils.gridAlocation.IAllocator;
 import com.example.battleships.utils.gridAlocation.IShipGenerator;
-import com.example.battleships.utils.gridAlocation.HorizontalAllocator;
+import com.example.battleships.utils.gridAlocation.VerticalAllocator;
 import com.example.battleships.view.BoardView;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +16,26 @@ public class BeanConfigUtil {
   @Bean(name = "commandExecutor")
   public ICommand getCommandExecutor() {
     return new CommandExecutor();
+  }
+
+  @Bean(name = CommandShoot.NAME)
+  public ICommand getCommandShoot() {
+    return new CommandShoot();
+  }
+
+  @Bean(name = CommandHelp.NAME)
+  public ICommand getCommandHelp() {
+    return new CommandHelp();
+  }
+
+  @Bean(name = CommandQuit.NAME)
+  public ICommand getCommandQuit() {
+    return new CommandQuit();
+  }
+
+  @Bean(name = CommandShow.NAME)
+  public ICommand getCommandShow() {
+    return new CommandShow();
   }
 
   @Bean(name = HorizontalAllocator.NAME)

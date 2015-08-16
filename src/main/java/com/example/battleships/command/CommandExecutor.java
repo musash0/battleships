@@ -1,6 +1,7 @@
 package com.example.battleships.command;
 
-import java.lang.reflect.Constructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
 import static org.apache.commons.lang.StringUtils.isEmpty;
 
@@ -11,10 +12,11 @@ public class CommandExecutor extends AbstractCommand {
   private static final String WIN_OS_CLR = "cls";
   private static final String UNIX_OS_CLR = "clear";
 
+  @Autowired()
+  private ApplicationContext context;
 
   @Override
   public void execute(String commandString) {
-
     if (isEmpty(commandString)) {
       System.err.println(SYS_ERR_MSG_PREF + "Type a commandString!");
       return;
@@ -23,18 +25,11 @@ public class CommandExecutor extends AbstractCommand {
     Commands command = Commands.findCommand(commandString);
     if (command != null) {
       try {
-
-        Constructor<? extends ICommand>
-                constructor =
-                command.getCommandClz().getConstructor();
-
-        ICommand executableCommand = constructor.newInstance();
+        ICommand executableCommand = context.getBean(command.getCommandClz());
         executableCommand.execute(commandString);
-
       } catch (Exception e) {
         System.err.println(SYS_ERR_MSG_PREF + "Unexpected exception: " + e.getMessage());
       }
-
     } else {
       System.out.println(SYS_ERR_MSG_PREF + "Unknown command!");
     }
