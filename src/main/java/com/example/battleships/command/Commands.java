@@ -57,14 +57,25 @@ public enum Commands {
       commandPrefix = commandString;
     }
 
-    Commands searchedCommand = null;
-    Commands[] commands = Commands.values();
-    for (Commands cmd : commands) {
-      if (commandPrefix.equalsIgnoreCase(cmd.getCommand())) {
-        searchedCommand = cmd;
-        break;
-      }
+    Commands searchedCommand;
+    if (commandPrefix.equalsIgnoreCase(SHOW.getCommand())) {
+      searchedCommand = SHOW;
+    } else if (commandPrefix.equalsIgnoreCase(HELP.getCommand())) {
+      searchedCommand = HELP;
+    } else if (commandPrefix.equalsIgnoreCase(QUIT.getCommand())) {
+      searchedCommand = QUIT;
+    } else {
+      searchedCommand = SHOOT;
     }
+
+
+//    Commands[] commands = Commands.values();
+//    for (Commands cmd : commands) {
+//      if (commandPrefix.equalsIgnoreCase(cmd.getCommand())) {
+//        searchedCommand = cmd;
+//        break;
+//      }
+//    }
 
     return searchedCommand;
   }

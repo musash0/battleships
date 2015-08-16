@@ -29,7 +29,6 @@ public class CommandExecutor extends AbstractCommand {
                 command.getCommandClz().getConstructor();
 
         ICommand executableCommand = constructor.newInstance();
-//        clearConsole();
         executableCommand.execute(commandString);
 
       } catch (Exception e) {

@@ -4,5 +4,5 @@ import com.example.battleships.model.ship.Ship;
 
 public interface IShipGenerator {
 
-  void generate(Ship ship);
+  void generate();
 }

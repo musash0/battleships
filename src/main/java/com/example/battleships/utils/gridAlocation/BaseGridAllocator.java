@@ -15,32 +15,28 @@ public abstract class BaseGridAllocator implements IAllocator {
     this.gridBoard = grid;
     this.ship = ship;
 
-    Position position = getPosition();
-    if (isEnoughGridSpace(position)) {
-      placeShip(position);
+    Position position = createPosition();
+    while (!gridSpaceAvailable(position)) {
+      position = createPosition();
+      System.out.println("recalculating");
     }
+    placeShip(position);
   }
 
   protected abstract void placeShip(Position position);
 
+  protected abstract int getStern(Position position);
 
-  public int getStern(Position position) {
-    return position.getRow() + ship.getSize() - 1;
-  }
+  protected abstract boolean gridSpaceAvailable(Position position);
 
   protected int getRandomNumber() {
     Random random = new Random();
-    return random.nextInt(GridBoard.BOARD_CAPACITY);
+    return random.nextInt(GridBoard.BOARD_CAPACITY - 1);
   }
 
-  private boolean isEnoughGridSpace(Position position) {
-    int stern = getStern(position);
-    return stern < gridBoard.getGridBoard().length;
-  }
-
-  private Position getPosition() {
+  private Position createPosition() {
     int row = getRandomNumber();
     int column = getRandomNumber();
-    return new Position(row, column);
+    return Position.createPosition(row, column);
   }
 }

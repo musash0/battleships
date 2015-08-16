@@ -1,9 +1,15 @@
 package com.example.battleships.model.ship;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-public abstract class Ship {
+@AllArgsConstructor
+public class Ship {
 
-  protected int size;
+  private int size;
+
+  public static Ship createShip(int size) {
+    return new Ship(size);
+  }
 }

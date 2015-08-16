@@ -5,7 +5,6 @@ import lombok.Getter;
 public enum BoardField {
 
   SHIP("0"),
-  EMPTY("."),
   HIT("X"),
   MISSED("-");
 
