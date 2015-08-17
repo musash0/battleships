@@ -5,7 +5,6 @@ import com.example.battleships.model.ship.Ship;
 import com.example.battleships.utils.gridAlocation.IAllocator;
 import com.example.battleships.utils.gridAlocation.IShipGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,10 +25,10 @@ public class ShipGenerator implements IShipGenerator {
   @Autowired
   private GridBoard gridBoard;
 
-//  @Value("${ship.destroyer.size}")
+  //  @Value("${ship.destroyer.size}")
   private int destroyerSize = 4;
 
-//  @Value("${ship.battleship.size}")
+  //  @Value("${ship.battleship.size}")
   private int battleshipSize = 5;
 
   @Override

@@ -13,6 +13,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Scanner;
 
+import static com.example.battleships.utils.BattleshipConstants.SYS_ERR_MSG_PREF;
+
 public class BattleshipGame {
 
   public static void main(String[] args) {
@@ -46,7 +48,7 @@ public class BattleshipGame {
         }
       }
     } catch (Exception e) {
-      e.printStackTrace();
+      System.err.println(SYS_ERR_MSG_PREF + e.getMessage());
     }
   }
 

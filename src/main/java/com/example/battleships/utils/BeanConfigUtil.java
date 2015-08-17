@@ -1,6 +1,11 @@
 package com.example.battleships.utils;
 
-import com.example.battleships.command.*;
+import com.example.battleships.command.CommandExecutor;
+import com.example.battleships.command.CommandHelp;
+import com.example.battleships.command.CommandQuit;
+import com.example.battleships.command.CommandShoot;
+import com.example.battleships.command.CommandShow;
+import com.example.battleships.command.ICommand;
 import com.example.battleships.model.board.GridBoard;
 import com.example.battleships.utils.gridAlocation.HorizontalAllocator;
 import com.example.battleships.utils.gridAlocation.IAllocator;
@@ -15,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BeanConfigUtil {
 
-  @Bean(name = "commandExecutor")
+  @Bean(name = CommandExecutor.NAME)
   public ICommand getCommandExecutor() {
     return new CommandExecutor();
   }
@@ -70,8 +75,8 @@ public class BeanConfigUtil {
     return new ShipsView();
   }
 
-  @Bean(name = CoordinatesValidator.NAME)
-  public Validator getCoordinatesValidator() {
-    return new CoordinatesValidator();
+  @Bean(name = CoordinatesParser.NAME)
+  public Parser getCoordinatesParser() {
+    return new CoordinatesParser();
   }
 }
