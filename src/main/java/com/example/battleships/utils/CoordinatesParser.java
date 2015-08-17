@@ -14,10 +14,16 @@ import static com.example.battleships.utils.BattleshipConstants.LETTER_INDEX;
 import static com.example.battleships.utils.BattleshipConstants.TEN_DIGIT;
 import static com.example.battleships.utils.BattleshipConstants.ZERO_DIGIT;
 
+/**
+ * {@inheritDoc}
+ */
 public class CoordinatesParser implements Parser {
 
   public static final String NAME = "coordinatesParser";
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public Position parse(String commandString) throws ParseException {
     int parsedRow = parseRow(commandString);
@@ -28,24 +34,25 @@ public class CoordinatesParser implements Parser {
 
   private int parseRow(String commandString) throws ParseException {
     int validAsciiLetter = commandString.toUpperCase().charAt(BattleshipConstants.LETTER_INDEX);
-    int row = 0;
     if (validAsciiLetter >= A_ASCII_CAPITAL_LETTER && validAsciiLetter <= J_ASCII_CAPITAL_LETTER) {
-      row = validAsciiLetter - ASCII_TO_ROW_PARSE_INDEX;
+      return validAsciiLetter - ASCII_TO_ROW_PARSE_INDEX;
     } else {
       throw new ParseException("Input is not valid!", LETTER_INDEX);
     }
-    return row;
   }
 
   private int parseColumn(String commandString) throws ParseException {
     String digit = StringUtils.substring(commandString, BattleshipConstants.FIRST_DIGIT_INDEX);
-    int parsedInt = Integer.valueOf(digit);
-    int column = 0;
+    int parsedInt;
+    try {
+      parsedInt = Integer.valueOf(digit);
+    } catch (NumberFormatException ex) {
+      throw new ParseException("Input is not valid!", FIRST_DIGIT_INDEX);
+    }
     if (parsedInt > ZERO_DIGIT && parsedInt <= TEN_DIGIT) {
-      column = parsedInt - COLUMN_TO_GRID_PARSE_INDEX;
+      return parsedInt - COLUMN_TO_GRID_PARSE_INDEX;
     } else {
       throw new ParseException("Input is not valid!", FIRST_DIGIT_INDEX);
     }
-    return column;
   }
 }

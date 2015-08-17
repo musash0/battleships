@@ -4,6 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Container for raw and column coordinates for gridBoard
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

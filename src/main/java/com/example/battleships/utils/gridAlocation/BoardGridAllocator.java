@@ -2,19 +2,26 @@ package com.example.battleships.utils.gridAlocation;
 
 import com.example.battleships.model.board.GridBoard;
 import com.example.battleships.model.ship.Ship;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Random;
 
-public abstract class BaseGridAllocator implements IAllocator {
+/**
+ * {@inheritDoc}
+ */
+public abstract class BoardGridAllocator implements IAllocator {
 
+  @Autowired
   protected GridBoard gridBoard;
+
   protected Ship ship;
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public void allocate(GridBoard grid, Ship ship) {
-    this.gridBoard = grid;
+  public void allocate(Ship ship) {
     this.ship = ship;
-
     Position position = createPosition();
     while (!gridSpaceAvailable(position)) {
       position = createPosition();
@@ -22,10 +29,19 @@ public abstract class BaseGridAllocator implements IAllocator {
     placeShip(position);
   }
 
+  /**
+   * Place ship at position
+   */
   protected abstract void placeShip(Position position);
 
+  /**
+   * Get full size of the ship
+   */
   protected abstract int getStern(Position position);
 
+  /**
+   * Check for available space on gridBoard
+   */
   protected abstract boolean gridSpaceAvailable(Position position);
 
   protected int getRandomNumber() {

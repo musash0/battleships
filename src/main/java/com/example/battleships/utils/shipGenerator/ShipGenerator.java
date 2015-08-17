@@ -1,12 +1,10 @@
-package com.example.battleships.utils;
+package com.example.battleships.utils.shipGenerator;
 
 import com.example.battleships.model.board.GridBoard;
 import com.example.battleships.model.ship.Ship;
 import com.example.battleships.utils.gridAlocation.IAllocator;
-import com.example.battleships.utils.gridAlocation.IShipGenerator;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +12,9 @@ import java.util.Random;
 
 import static com.example.battleships.model.ship.Ship.createShip;
 
+/**
+ * {@inheritDoc}
+ */
 @Data
 public class ShipGenerator implements IShipGenerator {
 
@@ -32,11 +33,14 @@ public class ShipGenerator implements IShipGenerator {
 
   private int battleshipSize = 5;
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void generate() {
     List<Ship> ships = createShips();
     for (Ship ship : ships) {
-      getAllocator().allocate(gridBoard, ship);
+      getAllocator().allocate(ship);
     }
   }
 

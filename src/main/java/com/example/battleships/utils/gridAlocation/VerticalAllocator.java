@@ -1,27 +1,37 @@
 package com.example.battleships.utils.gridAlocation;
 
-import com.example.battleships.model.board.BoardField;
-import com.example.battleships.model.board.BoardFieldStatus;
 import com.example.battleships.model.board.GridBoard;
 
-public class VerticalAllocator extends BaseGridAllocator {
+/**
+ * Allocate space vertically
+ */
+public class VerticalAllocator extends BoardGridAllocator {
 
   public static final String NAME = "verticalAllocator";
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   protected void placeShip(Position position) {
     int stern = getStern(position);
     for (int newRowPosition = position.getRow(); newRowPosition <= stern; newRowPosition++) {
       Position newShipPosition = createNewRowPosition(position, newRowPosition);
-      gridBoard.placeShipField(newShipPosition, BoardField.create(BoardFieldStatus.SHIP));
+      gridBoard.placeShipField(newShipPosition);
     }
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   protected int getStern(Position position) {
     return position.getRow() + ship.getSize() - 1;
   }
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   protected boolean gridSpaceAvailable(Position position) {
     int stern = getStern(position);

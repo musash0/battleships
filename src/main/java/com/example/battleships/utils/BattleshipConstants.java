@@ -11,8 +11,8 @@ public class BattleshipConstants {
   public static final int ZERO_DIGIT = 0;
   public static final int TEN_DIGIT = 10;
   public static final String SYS_ERR_MSG_PREF = "(ERR) ";
-  public static final String SYS_INFO_MSG_PREF = "(INFO) ";
   public static final String SYS_RESULT_MSG_PREF = "*** ";
+  public static final int ALL_BOARD_FIELDS_NUMBER = 100;
 
   private BattleshipConstants() {
 

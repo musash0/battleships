@@ -33,9 +33,6 @@ public class CommandExecutor implements ICommand {
         executableCommand.execute(commandString);
       } catch (Exception e) {
         System.err.println(SYS_ERR_MSG_PREF + "Unexpected exception: " + e.getMessage());
-        if (executableCommand != null) {
-          executableCommand.execute(Commands.HELP.getCommand());
-        }
       }
     } else {
       System.out.println(SYS_ERR_MSG_PREF + "Unknown command!");

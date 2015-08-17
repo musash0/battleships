@@ -10,6 +10,7 @@ public class Ship {
 
   @Getter
   private static int allShipsCounter;
+
   private int size;
 
   public static Ship createShip(int size) {

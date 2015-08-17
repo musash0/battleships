@@ -21,10 +21,21 @@ public class GridBoard {
   private BoardField[][] grid = new BoardField[BOARD_CAPACITY][BOARD_CAPACITY];
 
 
-  public void placeShipField(Position position, BoardField boardField) {
-    grid[position.getRow()][position.getColumn()] = boardField;
+  /**
+   * Place ship to the grid
+   *
+   * @param position
+   */
+  public void placeShipField(Position position) {
+    grid[position.getRow()][position.getColumn()] = BoardField.create(SHIP);
   }
 
+  /**
+   * Hit field on the grid board
+   *
+   * @param position
+   * @return Updated field
+   */
   public BoardField hitBoard(Position position) {
     BoardField field = grid[position.getRow()][position.getColumn()];
     hitField(field, position);
