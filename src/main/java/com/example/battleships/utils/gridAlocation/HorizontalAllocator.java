@@ -1,8 +1,6 @@
 package com.example.battleships.utils.gridAlocation;
 
 import com.example.battleships.model.board.GridBoard;
-import com.example.battleships.utils.gridAlocation.BoardGridAllocator;
-import com.example.battleships.utils.gridAlocation.Position;
 
 /**
  * Allocate space horizontally

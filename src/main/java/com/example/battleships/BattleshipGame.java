@@ -2,6 +2,8 @@ package com.example.battleships;
 
 import com.example.battleships.command.CommandExecutor;
 import com.example.battleships.command.Commands;
+import com.example.battleships.model.board.GridBoard;
+import com.example.battleships.model.ship.Ship;
 import com.example.battleships.utils.shipGenerator.IShipGenerator;
 import com.example.battleships.utils.shipGenerator.ShipGenerator;
 import com.example.battleships.view.BoardView;
@@ -11,9 +13,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Scanner;
 
-import static com.example.battleships.model.board.GridBoard.getAllShotsCounter;
-import static com.example.battleships.model.board.GridBoard.getHitShipsCounter;
-import static com.example.battleships.model.ship.Ship.getAllShipsCounter;
 import static com.example.battleships.utils.BattleshipConstants.ALL_BOARD_FIELDS_NUMBER;
 import static com.example.battleships.utils.BattleshipConstants.SYS_ERR_MSG_PREF;
 
@@ -46,7 +45,7 @@ public class BattleshipGame {
         break;
       }
       if (isGameComplete()) {
-        System.out.println("Game complete! Total shots: " + getAllShotsCounter());
+        System.out.println("Game complete! Total shots: " + GridBoard.getAllShotsCounter());
         break;
       }
     }
@@ -83,7 +82,7 @@ public class BattleshipGame {
    */
   private static boolean isGameComplete() {
     boolean gameEnded = false;
-    if (getAllShipsCounter() == getHitShipsCounter() || getAllShotsCounter() == ALL_BOARD_FIELDS_NUMBER) {
+    if (Ship.getAllShipsCounter() == GridBoard.getHitShipsCounter() || GridBoard.getAllShotsCounter() == ALL_BOARD_FIELDS_NUMBER) {
       gameEnded = true;
     }
     return gameEnded;
