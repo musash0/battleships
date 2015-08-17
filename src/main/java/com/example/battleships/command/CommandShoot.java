@@ -10,7 +10,12 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.text.ParseException;
 
-public class CommandShoot extends AbstractCommand {
+import static com.example.battleships.utils.BattleshipConstants.SYS_ERR_MSG_PREF;
+
+/**
+ * Try to hit a ship from the grid
+ */
+public class CommandShoot implements ICommand {
 
   public static final String NAME = "commandShoot";
 
@@ -24,10 +29,17 @@ public class CommandShoot extends AbstractCommand {
   @Autowired
   private Parser coordinatesParser;
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
-  public void execute(String commandString) throws ParseException {
+  public void execute(String commandString) {
+    try {
       Position position = coordinatesParser.parse(commandString);
-      gridBoard.tryShot(position);
+      gridBoard.hitBoard(position);
       gameBoardView.drawBoard();
+    } catch (ParseException e) {
+      System.err.println(SYS_ERR_MSG_PREF + "Unexpected exception: " + e.getMessage());
+    }
   }
 }

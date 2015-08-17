@@ -5,7 +5,10 @@ import com.example.battleships.view.ShipsView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
-public class CommandShow extends AbstractCommand {
+/**
+ * Shows ships on the board
+ */
+public class CommandShow implements ICommand {
 
   public static final String NAME = "commandShow";
 
@@ -13,6 +16,9 @@ public class CommandShow extends AbstractCommand {
   @Qualifier(value = ShipsView.NAME)
   private BoardView shipsView;
 
+  /**
+   * {@inheritDoc}
+   */
   @Override
   public void execute(String commandString) {
     shipsView.drawBoard();

@@ -1,10 +1,13 @@
 package com.example.battleships.model.board;
 
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import lombok.Data;
 
+/**
+ * Represent field from the gridBoard
+ */
 @Data
 @RequiredArgsConstructor
 @AllArgsConstructor
@@ -14,11 +17,22 @@ public class BoardField {
   private BoardFieldStatus value;
   private boolean isHit;
 
-  public static BoardField create(BoardFieldStatus value) {
-    return new BoardField(value);
+  /**
+   * Creates new field with the representation status
+   *
+   * @param fieldStatus
+   */
+  public static BoardField create(BoardFieldStatus fieldStatus) {
+    return new BoardField(fieldStatus);
   }
 
-  public static BoardField create(BoardFieldStatus value, boolean isHit) {
-    return new BoardField(value, isHit);
+  /**
+   * Creates new field with the representation status
+   *
+   * @param fieldStatus Status of field from the boardGrid
+   * @param isHit Set hit to the field
+   */
+  public static BoardField create(BoardFieldStatus fieldStatus, boolean isHit) {
+    return new BoardField(fieldStatus, isHit);
   }
 }

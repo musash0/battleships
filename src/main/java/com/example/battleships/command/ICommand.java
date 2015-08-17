@@ -1,8 +1,14 @@
 package com.example.battleships.command;
 
-import java.text.ParseException;
-
+/**
+ * Interface provides the ability to implement executable string as a command
+ */
 public interface ICommand {
 
-  void execute(String commandString) throws ParseException;
+  /**
+   * Execute string that is read from input
+   *
+   * @param commandString The executable command
+   */
+  void execute(String commandString);
 }

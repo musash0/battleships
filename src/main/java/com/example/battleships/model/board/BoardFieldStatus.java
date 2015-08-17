@@ -1,8 +1,10 @@
 package com.example.battleships.model.board;
 
 import lombok.Getter;
-import lombok.Setter;
 
+/**
+ * Enumeration for the status of every field from the boardGrid
+ */
 public enum BoardFieldStatus {
 
   SHIP("0"),

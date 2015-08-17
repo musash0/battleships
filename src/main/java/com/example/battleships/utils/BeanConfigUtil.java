@@ -79,4 +79,5 @@ public class BeanConfigUtil {
   public Parser getCoordinatesParser() {
     return new CoordinatesParser();
   }
+
 }

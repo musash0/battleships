@@ -13,7 +13,7 @@ public class HorizontalAllocator extends BaseGridAllocator {
     int stern = getStern(position);
     for (int newColumnPosition = position.getColumn(); newColumnPosition <= stern; newColumnPosition++) {
       Position newShipPosition = createNewColumnPosition(position, newColumnPosition);
-      gridBoard.addBoardField(newShipPosition, BoardField.create(BoardFieldStatus.SHIP));
+      gridBoard.placeShipField(newShipPosition, BoardField.create(BoardFieldStatus.SHIP));
     }
   }
 

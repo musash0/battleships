@@ -13,7 +13,7 @@ public class VerticalAllocator extends BaseGridAllocator {
     int stern = getStern(position);
     for (int newRowPosition = position.getRow(); newRowPosition <= stern; newRowPosition++) {
       Position newShipPosition = createNewRowPosition(position, newRowPosition);
-      gridBoard.addBoardField(newShipPosition, BoardField.create(BoardFieldStatus.SHIP));
+      gridBoard.placeShipField(newShipPosition, BoardField.create(BoardFieldStatus.SHIP));
     }
   }
 

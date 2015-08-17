@@ -4,7 +4,9 @@ import com.example.battleships.model.board.GridBoard;
 import com.example.battleships.model.ship.Ship;
 import com.example.battleships.utils.gridAlocation.IAllocator;
 import com.example.battleships.utils.gridAlocation.IShipGenerator;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.Random;
 
 import static com.example.battleships.model.ship.Ship.createShip;
 
+@Data
 public class ShipGenerator implements IShipGenerator {
 
   public static final String NAME = "shipGenerator";
@@ -25,10 +28,8 @@ public class ShipGenerator implements IShipGenerator {
   @Autowired
   private GridBoard gridBoard;
 
-  //  @Value("${ship.destroyer.size}")
   private int destroyerSize = 4;
 
-  //  @Value("${ship.battleship.size}")
   private int battleshipSize = 5;
 
   @Override
