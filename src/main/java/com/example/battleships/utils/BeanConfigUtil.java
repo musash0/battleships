@@ -7,6 +7,8 @@ import com.example.battleships.utils.gridAlocation.IAllocator;
 import com.example.battleships.utils.gridAlocation.IShipGenerator;
 import com.example.battleships.utils.gridAlocation.VerticalAllocator;
 import com.example.battleships.view.BoardView;
+import com.example.battleships.view.GameBoardView;
+import com.example.battleships.view.ShipsView;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -58,8 +60,18 @@ public class BeanConfigUtil {
     return new GridBoard();
   }
 
-  @Bean(name = BoardView.NAME)
-  public BoardView getBoardView() {
-    return new BoardView(getGridBoard());
+  @Bean(name = GameBoardView.NAME)
+  public BoardView getGameBoardView() {
+    return new GameBoardView();
+  }
+
+  @Bean(name = ShipsView.NAME)
+  public BoardView getShipsView() {
+    return new ShipsView();
+  }
+
+  @Bean(name = CoordinatesValidator.NAME)
+  public Validator getCoordinatesValidator() {
+    return new CoordinatesValidator();
   }
 }

@@ -1,62 +1,38 @@
 package com.example.battleships.view;
 
+import com.example.battleships.command.Commands;
 import com.example.battleships.model.board.BoardField;
-import com.example.battleships.model.board.BoardFieldStatus;
 import com.example.battleships.model.board.GridBoard;
-import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static com.example.battleships.model.board.BoardFieldStatus.*;
+@NoArgsConstructor
+public abstract class BoardView {
 
-@AllArgsConstructor
-public class BoardView {
-
-  public static final String NAME = "boardView";
-  private static final String OFFSET = "   ";
+  protected static final String OFFSET = "  ";
+  private static final char A_CAPITAL_LETTER = 65;
+  private static final String TITLE_NUMBERS = "   1  2  3  4  5  6  7  8  9  10";
 
   @Autowired
-  private GridBoard gridBoard;
+  protected GridBoard gridBoard;
 
-  public void draw() {
-    draw(false);
+  public void drawBoard() {
+    drawDescription();
   }
 
-  public void drawShips() {
-    draw(true);
-  }
-
-  private void draw(boolean showShips) {
+  private void drawDescription() {
     BoardField fields[][] = gridBoard.getGrid();
-    System.out.println("    1   2   3   4   5   6   7   8   9   10");
-    char asciiLetter = 65;
+    System.out.println(TITLE_NUMBERS);
+    char asciiLetter = A_CAPITAL_LETTER;
     for (BoardField[] row : fields) {
       System.out.print(asciiLetter++ + OFFSET);
       for (BoardField cell : row) {
-        drawBoard(cell, showShips);
+        drawFieldCells(cell);
       }
       System.out.println();
     }
+    System.out.println(Commands.SHOOT.getDescription());
   }
 
-  private void drawBoard(BoardField cell, boolean showShips) {
-    if (showShips) {
-      if (cell != null && SHIP.equals(cell.getValue())) {
-        System.out.print(HIT + OFFSET);
-      } else if (cell != null && HIT.equals(cell.getValue())) {
-        System.out.print(HIT + OFFSET);
-      } else {
-        System.out.print(EMPTY + OFFSET);
-      }
-    } else {
-      if (cell == null) {
-        System.out.print(DOT + OFFSET);
-      } else if (SHIP.equals(cell.getValue()) && cell.isHit()) {
-        System.out.print(HIT + OFFSET);
-      } else if (SHIP.equals(cell.getValue())) {
-        System.out.print(DOT + OFFSET);
-      } else {
-        System.out.print(cell.getValue() + OFFSET);
-      }
-    }
-  }
+  protected abstract void drawFieldCells(BoardField cell);
 }

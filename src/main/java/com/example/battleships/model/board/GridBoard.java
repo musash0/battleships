@@ -9,13 +9,16 @@ import static com.example.battleships.model.board.BoardFieldStatus.SHIP;
 
 public class GridBoard {
   public static final int BOARD_CAPACITY = 10;
+  @Getter
+  private static int hitShipsCounter;
+  @Getter
+  private static int allShotsCounter;
 
   @Getter
   private BoardField[][] grid = new BoardField[BOARD_CAPACITY][BOARD_CAPACITY];
 
 
   public void addBoardField(Position position, BoardField boardField) {
-    System.out.println("row" + position.getRow() + ",column" + position.getColumn());
     grid[position.getRow()][position.getColumn()] = boardField;
   }
 
@@ -25,8 +28,15 @@ public class GridBoard {
     int column = position.getColumn();
     if (field == null) {
       grid[row][column] = BoardField.create(MISSED, true);
-    } else if (SHIP.equals(field.getValue())) {
+      System.out.println("MISSED!");
+      allShotsCounter++;
+    } else if (SHIP.equals(field.getValue()) && !field.isHit()) {
       grid[row][column] = BoardField.create(HIT, true);
+      System.out.println("HIT!");
+      hitShipsCounter++;
+      allShotsCounter++;
+    } else if (field.isHit()) {
+      System.out.println("This field is already hit!");
     }
 
     return field;

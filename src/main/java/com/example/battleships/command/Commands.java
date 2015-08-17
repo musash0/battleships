@@ -7,7 +7,7 @@ public enum Commands {
   /**
    * Clear console.
    */
-  SHOOT("coordinates", "Try to hit a ship. Enter coordinates (row, col), e.g. A5", CommandShoot.class),
+  SHOOT("", "Try to hit a ship. Enter coordinates (row, col), e.g. A5", CommandShoot.class),
   /**
    * Quit the program.
    */
@@ -28,7 +28,7 @@ public enum Commands {
   @Getter
   private Class<? extends ICommand> commandClz;
 
-  private Commands(String command, String description,
+  Commands(String command, String description,
                    Class<? extends ICommand> commandClz) {
     this.command = command;
     this.description = description;
@@ -40,7 +40,7 @@ public enum Commands {
    */
   public static void print() {
     for (Commands command : Commands.values()) {
-      System.out.println("\t" + command.toString());
+      System.out.println(command.toString());
     }
   }
 
@@ -67,15 +67,6 @@ public enum Commands {
     } else {
       searchedCommand = SHOOT;
     }
-
-
-//    Commands[] commands = Commands.values();
-//    for (Commands cmd : commands) {
-//      if (commandPrefix.equalsIgnoreCase(cmd.getCommand())) {
-//        searchedCommand = cmd;
-//        break;
-//      }
-//    }
 
     return searchedCommand;
   }

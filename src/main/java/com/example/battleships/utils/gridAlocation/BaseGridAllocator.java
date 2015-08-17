@@ -18,7 +18,6 @@ public abstract class BaseGridAllocator implements IAllocator {
     Position position = createPosition();
     while (!gridSpaceAvailable(position)) {
       position = createPosition();
-      System.out.println("recalculating");
     }
     placeShip(position);
   }
