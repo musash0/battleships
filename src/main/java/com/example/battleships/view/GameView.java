@@ -1,32 +1,32 @@
 package com.example.battleships.view;
 
 import com.example.battleships.command.Commands;
-import com.example.battleships.model.board.BoardField;
-import com.example.battleships.model.board.GridBoard;
+import com.example.battleships.model.grid.Field;
+import com.example.battleships.model.grid.Grid;
 import com.example.battleships.utils.BattleshipConstants;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @NoArgsConstructor
-public abstract class BoardView {
+public abstract class GameView {
 
   protected static final String OFFSET = "  ";
   private static final String TITLE_NUMBERS = "   1  2  3  4  5  6  7  8  9  10";
 
   @Autowired
-  protected GridBoard gridBoard;
+  protected Grid grid;
 
-  public void drawBoard() {
+  public void draw() {
     drawDescription();
   }
 
   private void drawDescription() {
-    BoardField fields[][] = gridBoard.getGrid();
+    Field fields[][] = grid.getGrid();
     System.out.println(TITLE_NUMBERS);
     char asciiLetter = BattleshipConstants.A_ASCII_CAPITAL_LETTER;
-    for (BoardField[] row : fields) {
+    for (Field[] row : fields) {
       System.out.print(asciiLetter++ + OFFSET);
-      for (BoardField cell : row) {
+      for (Field cell : row) {
         drawFieldCells(cell);
       }
       System.out.println();
@@ -34,5 +34,5 @@ public abstract class BoardView {
     System.out.println(Commands.SHOOT.getDescription());
   }
 
-  protected abstract void drawFieldCells(BoardField cell);
+  protected abstract void drawFieldCells(Field cell);
 }

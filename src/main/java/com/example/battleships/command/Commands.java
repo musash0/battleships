@@ -5,7 +5,7 @@ import lombok.Getter;
 public enum Commands {
 
   SHOOT("", "Try to hit a ship. Enter coordinates (row, col), e.g. A5", CommandShoot.class),
-  SHOW("show", "Show battleships on board.", CommandShow.class),
+  SHOW("show", "Show battleships on grid.", CommandShow.class),
   HELP("help", "Print available commands.", CommandHelp.class),
   QUIT("quit", "Quit the program.", CommandQuit.class);
 

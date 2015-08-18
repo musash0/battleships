@@ -9,7 +9,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.text.ParseException;
 
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -18,7 +17,7 @@ import static org.mockito.Mockito.verify;
 public class TestCommandShow {
 
   @Mock
-  private ShipsView gameBoardView;
+  private ShipsView shipsView;
 
   @InjectMocks
   private CommandShow commandShow;
@@ -26,6 +25,6 @@ public class TestCommandShow {
   @Test
   public void testShow() throws ParseException {
     commandShow.execute("show");
-    verify(gameBoardView, times(1)).drawBoard();
+    verify(shipsView, times(1)).draw();
   }
 }

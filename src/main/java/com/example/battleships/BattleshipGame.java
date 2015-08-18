@@ -2,18 +2,18 @@ package com.example.battleships;
 
 import com.example.battleships.command.CommandExecutor;
 import com.example.battleships.command.Commands;
-import com.example.battleships.model.board.GridBoard;
+import com.example.battleships.model.grid.Grid;
 import com.example.battleships.model.ship.Ship;
 import com.example.battleships.utils.shipGenerator.IShipGenerator;
 import com.example.battleships.utils.shipGenerator.ShipGenerator;
-import com.example.battleships.view.BoardView;
-import com.example.battleships.view.GameBoardView;
+import com.example.battleships.view.GameView;
+import com.example.battleships.view.GridView;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.Scanner;
 
-import static com.example.battleships.utils.BattleshipConstants.ALL_BOARD_FIELDS_NUMBER;
+import static com.example.battleships.utils.BattleshipConstants.ALL_FIELDS_NUMBER;
 import static com.example.battleships.utils.BattleshipConstants.SYS_ERR_MSG_PREF;
 
 public class BattleshipGame {
@@ -24,7 +24,7 @@ public class BattleshipGame {
               new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
       CommandExecutor executor = getCommandExecutor(applicationContext);
       generateShips(applicationContext);
-      generateBoardView(applicationContext);
+      generateGridView(applicationContext);
       listenForUserInput(executor);
     } catch (Exception e) {
       System.err.println(SYS_ERR_MSG_PREF + e.getMessage());
@@ -46,7 +46,7 @@ public class BattleshipGame {
         break;
       }
       if (isGameComplete()) {
-        System.out.println("Game complete! Total shots: " + GridBoard.getAllShotsCounter());
+        System.out.println("Game complete! Total shots: " + Grid.getAllShotsCounter());
         break;
       }
     }
@@ -63,15 +63,15 @@ public class BattleshipGame {
   }
 
   /**
-   * Generate board view
+   * Generate grid view
    */
-  private static void generateBoardView(ApplicationContext applicationContext) {
-    BoardView view = (BoardView) applicationContext.getBean(GameBoardView.NAME);
-    view.drawBoard();
+  private static void generateGridView(ApplicationContext applicationContext) {
+    GameView view = (GameView) applicationContext.getBean(GridView.NAME);
+    view.draw();
   }
 
   /**
-   * Generate ships for the board
+   * Generate ships for the grid
    */
   private static void generateShips(ApplicationContext applicationContext) {
     IShipGenerator shipGenerator = (IShipGenerator) applicationContext.getBean(ShipGenerator.NAME);
@@ -83,8 +83,8 @@ public class BattleshipGame {
    */
   private static boolean isGameComplete() {
     boolean gameEnded = false;
-    if (Ship.getAllShipsCounter() == GridBoard.getHitShipsCounter()
-            || GridBoard.getAllShotsCounter() == ALL_BOARD_FIELDS_NUMBER) {
+    if (Ship.getAllShipsCounter() == Grid.getHitShipsCounter()
+            || Grid.getAllShotsCounter() == ALL_FIELDS_NUMBER) {
       gameEnded = true;
     }
     return gameEnded;

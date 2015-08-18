@@ -6,14 +6,14 @@ import com.example.battleships.command.CommandQuit;
 import com.example.battleships.command.CommandShoot;
 import com.example.battleships.command.CommandShow;
 import com.example.battleships.command.ICommand;
-import com.example.battleships.model.board.GridBoard;
+import com.example.battleships.model.grid.Grid;
 import com.example.battleships.utils.gridAllocation.HorizontalAllocator;
 import com.example.battleships.utils.gridAllocation.IAllocator;
 import com.example.battleships.utils.gridAllocation.VerticalAllocator;
 import com.example.battleships.utils.shipGenerator.IShipGenerator;
 import com.example.battleships.utils.shipGenerator.ShipGenerator;
-import com.example.battleships.view.BoardView;
-import com.example.battleships.view.GameBoardView;
+import com.example.battleships.view.GameView;
+import com.example.battleships.view.GridView;
 import com.example.battleships.view.ShipsView;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -62,17 +62,17 @@ public class BeanConfigUtil {
   }
 
   @Bean
-  public GridBoard getGridBoard() {
-    return new GridBoard();
+  public Grid getGrid() {
+    return new Grid();
   }
 
-  @Bean(name = GameBoardView.NAME)
-  public BoardView getGameBoardView() {
-    return new GameBoardView();
+  @Bean(name = GridView.NAME)
+  public GameView getGridView() {
+    return new GridView();
   }
 
   @Bean(name = ShipsView.NAME)
-  public BoardView getShipsView() {
+  public GameView getShipsView() {
     return new ShipsView();
   }
 

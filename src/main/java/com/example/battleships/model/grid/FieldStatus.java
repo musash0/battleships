@@ -1,11 +1,11 @@
-package com.example.battleships.model.board;
+package com.example.battleships.model.grid;
 
 import lombok.Getter;
 
 /**
- * Enumeration for the status of every field from the boardGrid
+ * Enumeration for the status of every field from the grid
  */
-public enum BoardFieldStatus {
+public enum FieldStatus {
 
   SHIP("0"),
   HIT("X"),
@@ -16,7 +16,7 @@ public enum BoardFieldStatus {
   @Getter
   private String icon;
 
-  BoardFieldStatus(String icon) {
+  FieldStatus(String icon) {
     this.icon = icon;
   }
 

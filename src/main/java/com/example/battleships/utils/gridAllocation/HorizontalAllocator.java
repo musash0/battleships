@@ -1,11 +1,11 @@
 package com.example.battleships.utils.gridAllocation;
 
-import static com.example.battleships.utils.BattleshipConstants.BOARD_SIZE_TO_COORDINATES_INDEX;
+import static com.example.battleships.utils.BattleshipConstants.GRID_SIZE_TO_COORDINATES_INDEX;
 
 /**
  * Allocate space horizontally
  */
-public class HorizontalAllocator extends BoardGridAllocator {
+public class HorizontalAllocator extends GridAllocator {
 
   public static final String NAME = "horizontalAllocator";
 
@@ -17,7 +17,7 @@ public class HorizontalAllocator extends BoardGridAllocator {
     int stern = getStern(position);
     for (int newColumnPosition = position.getColumn(); newColumnPosition <= stern; newColumnPosition++) {
       Position newShipPosition = generatePosition(position.getRow(), newColumnPosition);
-      gridBoard.placeShipField(newShipPosition);
+      grid.placeShip(newShipPosition);
     }
   }
 
@@ -26,17 +26,17 @@ public class HorizontalAllocator extends BoardGridAllocator {
    */
   @Override
   protected int getStern(Position position) {
-    return position.getColumn() + ship.getSize() - BOARD_SIZE_TO_COORDINATES_INDEX;
+    return position.getColumn() + ship.getSize() - GRID_SIZE_TO_COORDINATES_INDEX;
   }
 
   /**
    * {@inheritDoc}
    */
   @Override
-  protected boolean traverseGridBoard(Position position, int stern) {
+  protected boolean traverseGrid(Position position, int stern) {
     boolean availableSpace = true;
     for (int newColumnPosition = position.getColumn(); newColumnPosition <= stern; newColumnPosition++) {
-      if (!gridBoard.isEmpty(generatePosition(position.getRow(), newColumnPosition))) {
+      if (!grid.isEmpty(generatePosition(position.getRow(), newColumnPosition))) {
         availableSpace = false;
         break;
       }

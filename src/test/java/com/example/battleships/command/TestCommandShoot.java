@@ -1,9 +1,9 @@
 package com.example.battleships.command;
 
-import com.example.battleships.model.board.GridBoard;
+import com.example.battleships.model.grid.Grid;
 import com.example.battleships.utils.Parser;
 import com.example.battleships.utils.gridAllocation.Position;
-import com.example.battleships.view.BoardView;
+import com.example.battleships.view.GameView;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -22,10 +22,10 @@ import static org.mockito.Mockito.when;
 public class TestCommandShoot {
 
   @Mock
-  private GridBoard gridBoard;
+  private Grid grid;
 
   @Mock
-  private BoardView gameBoardView;
+  private GameView gameGameView;
 
   @Mock
   private Parser coordinatesParser;
@@ -37,8 +37,8 @@ public class TestCommandShoot {
   public void testShoot() throws ParseException {
     commandShoot.execute(anyString());
     verify(coordinatesParser, times(1)).parse(anyString());
-    verify(gridBoard, times(1)).hitBoard(any(Position.class));
-    verify(gameBoardView, times(1)).drawBoard();
+    verify(grid, times(1)).hit(any(Position.class));
+    verify(gameGameView, times(1)).draw();
   }
 
   @Test
@@ -46,7 +46,7 @@ public class TestCommandShoot {
     when(coordinatesParser.parse(anyString())).thenThrow(ParseException.class);
     commandShoot.execute(anyString());
     verify(coordinatesParser, times(1)).parse(anyString());
-    verify(gridBoard, times(0)).hitBoard(any(Position.class));
-    verify(gameBoardView, times(0)).drawBoard();
+    verify(grid, times(0)).hit(any(Position.class));
+    verify(gameGameView, times(0)).draw();
   }
 }

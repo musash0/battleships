@@ -1,6 +1,6 @@
 package com.example.battleships.utils.gridAllocation;
 
-import com.example.battleships.model.board.GridBoard;
+import com.example.battleships.model.grid.Grid;
 import com.example.battleships.model.ship.Ship;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,19 +23,15 @@ import static org.mockito.Mockito.when;
 public class TestHorizontalAllocator {
 
   @Mock
-  private GridBoard gridBoard;
-
+  private Grid grid;
   @Mock
   private Ship ship;
-
   @Mock
-  private Position positionStartOfBoard;
-
+  private Position positionStartOfGrid;
   @Mock
-  private Position positionEndOfBoard;
-
+  private Position positionEndOfGrid;
   @Mock
-  private Position positionOutOfBoard;
+  private Position positionOutOfGrid;
 
   @InjectMocks
   private HorizontalAllocator horizontalAllocator;
@@ -43,63 +39,63 @@ public class TestHorizontalAllocator {
   @Before
   public void setup() {
     when(ship.getSize()).thenReturn(DESTROYER_SIZE);
-    when(positionEndOfBoard.getColumn()).thenReturn(6);
-    when(positionStartOfBoard.getColumn()).thenReturn(0);
-    when(positionOutOfBoard.getColumn()).thenReturn(7);
+    when(positionEndOfGrid.getColumn()).thenReturn(6);
+    when(positionStartOfGrid.getColumn()).thenReturn(0);
+    when(positionOutOfGrid.getColumn()).thenReturn(7);
   }
 
   @Test
   public void testSternEndPosition() {
-    int stern = horizontalAllocator.getStern(positionEndOfBoard);
-    assertEquals("Index 9 is max destroyer position on board", 9, stern);
+    int stern = horizontalAllocator.getStern(positionEndOfGrid);
+    assertEquals("Index 9 is max destroyer position on grid", 9, stern);
   }
 
   @Test
   public void testSternStartPosition() {
-    int stern = horizontalAllocator.getStern(positionStartOfBoard);
-    assertEquals("Index 3 is min destroyer position on board", 3, stern);
+    int stern = horizontalAllocator.getStern(positionStartOfGrid);
+    assertEquals("Index 3 is min destroyer position on grid", 3, stern);
   }
 
   @Test
   public void testSternOutPosition() {
-    int stern = horizontalAllocator.getStern(positionOutOfBoard);
-    assertEquals("Index grater than 9 is out of board", 10, stern);
+    int stern = horizontalAllocator.getStern(positionOutOfGrid);
+    assertEquals("Index grater than 9 is out of grid", 10, stern);
   }
 
   @Test
   public void testWithNotEmptyFieldAtStart() {
-    when(gridBoard.isEmpty(any(Position.class))).thenReturn(false);
-    assertFalse(horizontalAllocator.gridSpaceAvailable(positionStartOfBoard));
+    when(grid.isEmpty(any(Position.class))).thenReturn(false);
+    assertFalse(horizontalAllocator.gridSpaceAvailable(positionStartOfGrid));
   }
 
   @Test
   public void testWithNotEmptyFieldAtEnd() {
-    when(gridBoard.isEmpty(any(Position.class))).thenReturn(false);
-    assertFalse(horizontalAllocator.gridSpaceAvailable(positionEndOfBoard));
+    when(grid.isEmpty(any(Position.class))).thenReturn(false);
+    assertFalse(horizontalAllocator.gridSpaceAvailable(positionEndOfGrid));
   }
 
   @Test
   public void testWithEmptyFieldAtStart() {
-    when(gridBoard.isEmpty(any(Position.class))).thenReturn(true);
-    assertTrue(horizontalAllocator.gridSpaceAvailable(positionStartOfBoard));
+    when(grid.isEmpty(any(Position.class))).thenReturn(true);
+    assertTrue(horizontalAllocator.gridSpaceAvailable(positionStartOfGrid));
   }
 
   @Test
   public void testWithEmptyFieldAtEnd() {
-    when(gridBoard.isEmpty(any(Position.class))).thenReturn(true);
-    assertTrue(horizontalAllocator.gridSpaceAvailable(positionEndOfBoard));
+    when(grid.isEmpty(any(Position.class))).thenReturn(true);
+    assertTrue(horizontalAllocator.gridSpaceAvailable(positionEndOfGrid));
   }
 
   @Test
   public void testPlaceDestroyer() {
-    horizontalAllocator.placeShip(positionStartOfBoard);
-    verify(gridBoard, times(DESTROYER_SIZE)).placeShipField(any(Position.class));
+    horizontalAllocator.placeShip(positionStartOfGrid);
+    verify(grid, times(DESTROYER_SIZE)).placeShip(any(Position.class));
   }
 
   @Test
   public void testPlaceBattleship() {
     when(ship.getSize()).thenReturn(BATTLESHIP_SIZE);
-    horizontalAllocator.placeShip(positionStartOfBoard);
-    verify(gridBoard, times(BATTLESHIP_SIZE)).placeShipField(any(Position.class));
+    horizontalAllocator.placeShip(positionStartOfGrid);
+    verify(grid, times(BATTLESHIP_SIZE)).placeShip(any(Position.class));
   }
 }

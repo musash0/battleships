@@ -1,12 +1,12 @@
 package com.example.battleships.command;
 
-import com.example.battleships.view.BoardView;
+import com.example.battleships.view.GameView;
 import com.example.battleships.view.ShipsView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
 /**
- * Shows ships on the board
+ * Shows ships on the grid
  */
 public class CommandShow implements ICommand {
 
@@ -14,13 +14,13 @@ public class CommandShow implements ICommand {
 
   @Autowired
   @Qualifier(value = ShipsView.NAME)
-  private BoardView shipsView;
+  private GameView shipsView;
 
   /**
    * {@inheritDoc}
    */
   @Override
   public void execute(String commandString) {
-    shipsView.drawBoard();
+    shipsView.draw();
   }
 }
