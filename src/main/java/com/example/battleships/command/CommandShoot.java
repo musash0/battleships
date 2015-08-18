@@ -21,11 +21,9 @@ public class CommandShoot implements ICommand {
 
   @Autowired
   private Grid grid;
-
   @Autowired
   @Qualifier(value = GridView.NAME)
   private GameView gameGameView;
-
   @Autowired
   private Parser coordinatesParser;
 

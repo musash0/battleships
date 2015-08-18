@@ -13,6 +13,8 @@ import static com.example.battleships.utils.BattleshipConstants.J_ASCII_CAPITAL_
 import static com.example.battleships.utils.BattleshipConstants.LETTER_INDEX;
 import static com.example.battleships.utils.BattleshipConstants.TEN_DIGIT;
 import static com.example.battleships.utils.BattleshipConstants.ZERO_DIGIT;
+import static com.example.battleships.utils.gridAllocation.Position.createPosition;
+import static org.apache.commons.lang.StringUtils.substring;
 
 /**
  * {@inheritDoc}
@@ -29,26 +31,29 @@ public class CoordinatesParser implements Parser {
     int parsedRow = parseRow(commandString);
     int parsedColumn = parseColumn(commandString);
 
-    return Position.createPosition(parsedRow, parsedColumn);
+    return createPosition(parsedRow, parsedColumn);
   }
 
   private int parseRow(String commandString) throws ParseException {
-    int validAsciiLetter = commandString.toUpperCase().charAt(BattleshipConstants.LETTER_INDEX);
-    if (validAsciiLetter >= A_ASCII_CAPITAL_LETTER && validAsciiLetter <= J_ASCII_CAPITAL_LETTER) {
+    int validAsciiLetter = commandString.toUpperCase().charAt(LETTER_INDEX);
+    if (validAsciiLetter >= A_ASCII_CAPITAL_LETTER
+            && validAsciiLetter <= J_ASCII_CAPITAL_LETTER) {
       return validAsciiLetter - ASCII_TO_ROW_PARSE_INDEX;
+
     } else {
       throw new ParseException("Input is not valid!", LETTER_INDEX);
     }
   }
 
   private int parseColumn(String commandString) throws ParseException {
-    String digit = StringUtils.substring(commandString, BattleshipConstants.FIRST_DIGIT_INDEX);
+    String digit = substring(commandString, FIRST_DIGIT_INDEX);
     int parsedInt;
     try {
       parsedInt = Integer.valueOf(digit);
     } catch (NumberFormatException ex) {
       throw new ParseException("Input is not valid!", FIRST_DIGIT_INDEX);
     }
+
     if (parsedInt > ZERO_DIGIT && parsedInt <= TEN_DIGIT) {
       return parsedInt - GRID_SIZE_TO_COORDINATES_INDEX;
     } else {

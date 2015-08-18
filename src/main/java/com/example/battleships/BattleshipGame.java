@@ -56,7 +56,8 @@ public class BattleshipGame {
    * Generate the executor of commands
    */
   private static CommandExecutor getCommandExecutor(ApplicationContext applicationContext) {
-    CommandExecutor executor = (CommandExecutor) applicationContext.getBean(CommandExecutor.NAME);
+    CommandExecutor executor =
+            (CommandExecutor) applicationContext.getBean(CommandExecutor.NAME);
     //Print available commands
     executor.execute(Commands.HELP.getCommand());
     return executor;
@@ -74,7 +75,8 @@ public class BattleshipGame {
    * Generate ships for the grid
    */
   private static void generateShips(ApplicationContext applicationContext) {
-    IShipGenerator shipGenerator = (IShipGenerator) applicationContext.getBean(ShipGenerator.NAME);
+    IShipGenerator shipGenerator =
+            (IShipGenerator) applicationContext.getBean(ShipGenerator.NAME);
     shipGenerator.generate();
   }
 

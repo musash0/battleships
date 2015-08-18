@@ -19,6 +19,8 @@ public class Field {
 
   /**
    * Creates new field with the representation status
+   *
+   * @param fieldStatus Status of field from the grid
    */
   public static Field create(FieldStatus fieldStatus) {
     return new Field(fieldStatus);

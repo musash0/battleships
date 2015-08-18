@@ -21,7 +21,6 @@ public class Grid {
   @Getter
   private Field[][] grid = new Field[GRID_CAPACITY][GRID_CAPACITY];
 
-
   /**
    * Place ship to the grid
    *
