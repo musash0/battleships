@@ -43,6 +43,15 @@ public class Grid {
     return field;
   }
 
+  /**
+   * Check if field is empty
+   *
+   * @param position
+   */
+  public boolean isEmpty(Position position) {
+    return grid[position.getRow()][position.getColumn()] == null;
+  }
+
   private void checkFieldForHit(Field field, Position position) {
     int row = position.getRow();
     int column = position.getColumn();
@@ -66,10 +75,6 @@ public class Grid {
     grid[row][column] = Field.create(MISSED, true);
     System.out.println("MISSED!");
     allShotsCounter++;
-  }
-
-  public boolean isEmpty(Position position) {
-    return grid[position.getRow()][position.getColumn()] == null;
   }
 
 }

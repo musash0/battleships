@@ -1,14 +1,13 @@
 package com.example.battleships.utils;
 
 import com.example.battleships.utils.gridAllocation.Position;
-import org.apache.commons.lang.StringUtils;
 
 import java.text.ParseException;
 
 import static com.example.battleships.utils.BattleshipConstants.ASCII_TO_ROW_PARSE_INDEX;
 import static com.example.battleships.utils.BattleshipConstants.A_ASCII_CAPITAL_LETTER;
-import static com.example.battleships.utils.BattleshipConstants.GRID_SIZE_TO_COORDINATES_INDEX;
 import static com.example.battleships.utils.BattleshipConstants.FIRST_DIGIT_INDEX;
+import static com.example.battleships.utils.BattleshipConstants.GRID_SIZE_TO_COORDINATES_INDEX;
 import static com.example.battleships.utils.BattleshipConstants.J_ASCII_CAPITAL_LETTER;
 import static com.example.battleships.utils.BattleshipConstants.LETTER_INDEX;
 import static com.example.battleships.utils.BattleshipConstants.TEN_DIGIT;

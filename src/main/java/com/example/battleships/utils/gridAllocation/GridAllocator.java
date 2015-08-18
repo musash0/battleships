@@ -31,6 +31,18 @@ public abstract class GridAllocator implements IAllocator {
   }
 
   /**
+   * Check for available space on grid
+   */
+  protected boolean gridSpaceAvailable(Position position) {
+    int stern = getStern(position);
+    boolean availableSpace = false;
+    if (stern < GRID_CAPACITY) {
+      availableSpace = traverseGrid(position, stern);
+    }
+    return availableSpace;
+  }
+
+  /**
    * Place ship at position
    */
   protected abstract void placeShip(Position position);
@@ -45,24 +57,6 @@ public abstract class GridAllocator implements IAllocator {
    */
   protected abstract boolean traverseGrid(Position position, int stern);
 
-  /**
-   * Check for available space on grid
-   */
-  protected boolean gridSpaceAvailable(Position position) {
-    int stern = getStern(position);
-    boolean availableSpace = false;
-    if (stern < GRID_CAPACITY) {
-      availableSpace = traverseGrid(position, stern);
-    }
-    return availableSpace;
-  }
-
-  private Position createPosition() {
-    int row = getRandomNumber();
-    int column = getRandomNumber();
-    return Position.createPosition(row, column);
-  }
-
   protected Position generatePosition(int row, int column) {
     return Position.createPosition(row, column);
   }
@@ -70,5 +64,11 @@ public abstract class GridAllocator implements IAllocator {
   protected int getRandomNumber() {
     Random random = new Random();
     return random.nextInt(GRID_CAPACITY);
+  }
+
+  private Position createPosition() {
+    int row = getRandomNumber();
+    int column = getRandomNumber();
+    return Position.createPosition(row, column);
   }
 }
