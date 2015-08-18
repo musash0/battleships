@@ -1,13 +1,13 @@
 package com.example.battleships.utils;
 
-import com.example.battleships.utils.gridAlocation.Position;
+import com.example.battleships.utils.gridAllocation.Position;
 import org.apache.commons.lang.StringUtils;
 
 import java.text.ParseException;
 
 import static com.example.battleships.utils.BattleshipConstants.ASCII_TO_ROW_PARSE_INDEX;
 import static com.example.battleships.utils.BattleshipConstants.A_ASCII_CAPITAL_LETTER;
-import static com.example.battleships.utils.BattleshipConstants.COLUMN_TO_GRID_PARSE_INDEX;
+import static com.example.battleships.utils.BattleshipConstants.BOARD_SIZE_TO_COORDINATES_INDEX;
 import static com.example.battleships.utils.BattleshipConstants.FIRST_DIGIT_INDEX;
 import static com.example.battleships.utils.BattleshipConstants.J_ASCII_CAPITAL_LETTER;
 import static com.example.battleships.utils.BattleshipConstants.LETTER_INDEX;
@@ -50,7 +50,7 @@ public class CoordinatesParser implements Parser {
       throw new ParseException("Input is not valid!", FIRST_DIGIT_INDEX);
     }
     if (parsedInt > ZERO_DIGIT && parsedInt <= TEN_DIGIT) {
-      return parsedInt - COLUMN_TO_GRID_PARSE_INDEX;
+      return parsedInt - BOARD_SIZE_TO_COORDINATES_INDEX;
     } else {
       throw new ParseException("Input is not valid!", FIRST_DIGIT_INDEX);
     }

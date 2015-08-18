@@ -1,4 +1,4 @@
-package com.example.battleships.utils.gridAlocation;
+package com.example.battleships.utils.gridAllocation;
 
 import com.example.battleships.model.ship.Ship;
 

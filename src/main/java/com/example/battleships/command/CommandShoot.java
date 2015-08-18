@@ -2,7 +2,7 @@ package com.example.battleships.command;
 
 import com.example.battleships.model.board.GridBoard;
 import com.example.battleships.utils.Parser;
-import com.example.battleships.utils.gridAlocation.Position;
+import com.example.battleships.utils.gridAllocation.Position;
 import com.example.battleships.view.BoardView;
 import com.example.battleships.view.GameBoardView;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.example.battleships.utils;
 
-import com.example.battleships.utils.gridAlocation.Position;
+import com.example.battleships.utils.gridAllocation.Position;
 
 import java.text.ParseException;
 

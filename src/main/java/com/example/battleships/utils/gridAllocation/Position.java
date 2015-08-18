@@ -1,4 +1,4 @@
-package com.example.battleships.utils.gridAlocation;
+package com.example.battleships.utils.gridAllocation;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

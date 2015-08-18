@@ -20,7 +20,8 @@ public class BattleshipGame {
 
   public static void main(String[] args) {
     try {
-      ApplicationContext applicationContext = new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+      ApplicationContext applicationContext =
+              new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
       CommandExecutor executor = getCommandExecutor(applicationContext);
       generateShips(applicationContext);
       generateBoardView(applicationContext);
@@ -55,7 +56,7 @@ public class BattleshipGame {
    * Generate the executor of commands
    */
   private static CommandExecutor getCommandExecutor(ApplicationContext applicationContext) {
-    CommandExecutor executor = (CommandExecutor) applicationContext.getBean("commandExecutor");
+    CommandExecutor executor = (CommandExecutor) applicationContext.getBean(CommandExecutor.NAME);
     //Print available commands
     executor.execute(Commands.HELP.getCommand());
     return executor;
@@ -82,7 +83,8 @@ public class BattleshipGame {
    */
   private static boolean isGameComplete() {
     boolean gameEnded = false;
-    if (Ship.getAllShipsCounter() == GridBoard.getHitShipsCounter() || GridBoard.getAllShotsCounter() == ALL_BOARD_FIELDS_NUMBER) {
+    if (Ship.getAllShipsCounter() == GridBoard.getHitShipsCounter()
+            || GridBoard.getAllShotsCounter() == ALL_BOARD_FIELDS_NUMBER) {
       gameEnded = true;
     }
     return gameEnded;

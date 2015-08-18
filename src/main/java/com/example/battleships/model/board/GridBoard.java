@@ -1,6 +1,6 @@
 package com.example.battleships.model.board;
 
-import com.example.battleships.utils.gridAlocation.Position;
+import com.example.battleships.utils.gridAllocation.Position;
 import lombok.Getter;
 
 import static com.example.battleships.model.board.BoardFieldStatus.HIT;
