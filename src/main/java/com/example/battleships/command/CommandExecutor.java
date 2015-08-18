@@ -26,16 +26,12 @@ public class CommandExecutor implements ICommand {
       return;
     }
     Commands command = Commands.findCommand(commandString);
-    if (command != null) {
-      ICommand executableCommand = null;
-      try {
-        executableCommand = context.getBean(command.getCommandClz());
-        executableCommand.execute(commandString);
-      } catch (Exception e) {
-        System.err.println(SYS_ERR_MSG_PREF + "Unexpected exception: " + e.getMessage());
-      }
-    } else {
-      System.out.println(SYS_ERR_MSG_PREF + "Unknown command!");
+    try {
+      ICommand executableCommand = context.getBean(command.getCommandClz());
+      executableCommand.execute(commandString);
+    } catch (Exception e) {
+      System.err.println(SYS_ERR_MSG_PREF + "Unexpected exception: " + e.getMessage());
     }
+
   }
 }

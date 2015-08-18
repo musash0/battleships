@@ -11,6 +11,7 @@ import static com.example.battleships.model.board.BoardFieldStatus.SHIP;
  * Represent matrix of the battleship board
  */
 public class GridBoard {
+
   public static final int BOARD_CAPACITY = 10;
   @Getter
   private static int hitShipsCounter;

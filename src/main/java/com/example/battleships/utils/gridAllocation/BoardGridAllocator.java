@@ -15,7 +15,6 @@ public abstract class BoardGridAllocator implements IAllocator {
 
   @Autowired
   protected GridBoard gridBoard;
-
   protected Ship ship;
 
   /**

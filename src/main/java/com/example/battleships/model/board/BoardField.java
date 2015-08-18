@@ -19,8 +19,6 @@ public class BoardField {
 
   /**
    * Creates new field with the representation status
-   *
-   * @param fieldStatus
    */
   public static BoardField create(BoardFieldStatus fieldStatus) {
     return new BoardField(fieldStatus);

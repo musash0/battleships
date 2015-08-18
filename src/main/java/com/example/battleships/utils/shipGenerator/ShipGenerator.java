@@ -1,6 +1,5 @@
 package com.example.battleships.utils.shipGenerator;
 
-import com.example.battleships.model.board.GridBoard;
 import com.example.battleships.model.ship.Ship;
 import com.example.battleships.utils.gridAllocation.IAllocator;
 import lombok.Data;

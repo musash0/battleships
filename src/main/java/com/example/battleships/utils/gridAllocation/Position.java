@@ -12,6 +12,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Position {
 
+  private int row;
+  private int column;
+
   public static Position createPosition(int row, int column) {
     return new Position(row, column);
   }
@@ -19,8 +22,4 @@ public class Position {
   public static Position createPosition() {
     return new Position();
   }
-
-  private int row;
-
-  private int column;
 }
